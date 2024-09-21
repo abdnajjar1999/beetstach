@@ -1076,7 +1076,8 @@ body, html {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto; /* Add vertical scroll */
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .video-background {
@@ -1204,7 +1205,43 @@ body, html {
   transform: translateZ(calc(var(--index) * 10));
   margin: 0 .45vw;
 }
+@media (max-width: 768px) {
+  .wrapper {
+    overflow-y: auto; /* Enable vertical scroll */
+    height: auto; /* Adjust height to allow scrolling */
+  }
 
+  .inner-containers {
+    flex-wrap: wrap; /* Allow wrapping of containers if needed */
+    justify-content: center; /* Center the items */
+  }
+}
+
+@media (max-width: 600px) {
+  .inner-container {
+    width: calc(var(--index) * 4);
+    height: calc(var(--index) * 11);
+  }
+
+  .inner-container:hover {
+    transform: translateZ(calc(var(--index) * 6));
+    width: 180px;
+  }
+
+  .inner-container:hover+* {
+    transform: translateZ(calc(var(--index) * 5.5)) rotateY(30deg);
+    width: 120px;
+  }
+
+  .inner-container::before {
+    font-size: 0.9rem; /* Make the title smaller */
+    padding: 3px 8px; /* Adjust padding to match the smaller title */
+  }
+
+  .services-title {
+    font-size: 2px;
+  }
+}
 
 /* -- External Social Link CSS Styles -- */
 
